@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
+use App\Entity\User;
 use App\Entity\Ingredient;
 use App\Entity\Quantity;
 use App\Entity\Recipe;
@@ -84,8 +85,8 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
                 ->setUpdatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()))
                 ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()))
                 ->setContent($faker->paragraphs(10, true))
-                ->setCategory($this->getReference($faker->randomElement($categories)))
-                ->setUser($this->getReference('USER' . $faker->numberBetween(1, 10)))
+                ->setCategory($this->getReference($faker->randomElement($categories), Category::class))
+                ->setUser($this->getReference('USER' . $faker->numberBetween(1, 10), User::class))
                 ->setDuration($faker->numberBetween(2, 60));
 
             foreach($faker->randomElements($ingredients, $faker->numberBetween(2, 5)) as $ingredient) {
@@ -102,7 +103,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [UserFixtures::class];
     }
