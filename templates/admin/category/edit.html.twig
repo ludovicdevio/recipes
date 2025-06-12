@@ -1,0 +1,10 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title 'Editer la catégorie ' ~ category.name %}
+
+{% block body %}
+
+    <h1>Editer la catégorie {{ category.name }}</h1>
+
+    {{ form(form) }}
+{% endblock %}

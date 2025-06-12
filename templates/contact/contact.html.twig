@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block body %}
+    <h1>Nous contacter</h1>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-sm">{{ form_row(form.name) }}</div>
+        <div class="col-sm">{{ form_row(form.email) }}</div>
+        <div class="col-sm">{{ form_row(form.service) }}</div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

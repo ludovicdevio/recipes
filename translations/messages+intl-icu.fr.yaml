@@ -1,0 +1,7 @@
+Welcome: __Welcome
+home_recipe_count: >-
+  {count, plural,
+      =0    {Aucune recette}
+      =1    {Une recette}
+      other {# recettes!}
+  }

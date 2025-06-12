@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ recipe.title }}</h1>
+
+    <p class="text-center">
+        <img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}" alt="" style="max-height: 300px" class="img-thumbnail">
+    </p>
+
+    <p>
+        {{ recipe.content | nl2br }}
+    </p>
+{% endblock %}

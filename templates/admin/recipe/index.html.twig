@@ -1,0 +1,42 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Toutes les recettes" %}
+
+{% block body %}
+    <p>
+        <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.create') }}">Créer une recette</a>
+    </p>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ knp_pagination_sortable(recipes, 'ID', 'r.id') }}</th>
+            <th>{{ knp_pagination_sortable(recipes, 'Titre', 'r.title') }}</th>
+            <th>Catégorie</th>
+            <th style="width: 200px">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for recipe in recipes %}
+        <tr id="row_recipe_{{ recipe.id }}">
+            <td>{{ recipe.id }}</td>
+            <td>
+                <a href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">{{ recipe.title }}</a>
+            </td>
+            <td>{{ recipe.category.name | default('') }}</td>
+            <td>
+                <div class="d-flex gap-1">
+                    <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">Editer</a>
+                    <form action="{{ path('admin.recipe.delete', {id: recipe.id}) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(recipes) }}
+{% endblock %}

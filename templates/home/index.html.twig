@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <h1>
+        {{ 'welcome' | trans({':name': 'John'}) }}
+    </h1>
+    <p>
+        {{ "home_recipe_count" | trans({count: 0}) }}
+    </p>
+{% endblock %}
