@@ -215,7 +215,7 @@ class Recipe
 
     public function addQuantity(Quantity $quantity): static
     {
-        if (!$this->quantities->contains($quantity)) {
+        if (! $this->quantities->contains($quantity)) {
             $this->quantities->add($quantity);
             $quantity->setRecipe($this);
         }

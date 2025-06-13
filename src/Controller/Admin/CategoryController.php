@@ -12,15 +12,15 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route("/admin/category", name: 'admin.category.')]
+#[Route('/admin/category', name: 'admin.category.')]
 #[IsGranted('ROLE_ADMIN')]
-class CategoryController extends AbstractController {
-
+class CategoryController extends AbstractController
+{
     #[Route(name: 'index')]
     public function index(CategoryRepository $repository)
     {
         return $this->render('admin/category/index.html.twig', [
-            'categories' => $repository->findAllWithCount()
+            'categories' => $repository->findAllWithCount(),
         ]);
     }
 
@@ -37,11 +37,13 @@ class CategoryController extends AbstractController {
             return $this->redirectToRoute('admin.category.index');
         }
         return $this->render('admin/category/create.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'edit', requirements: ['id' => Requirement::DIGITS], methods: ['GET', 'POST'])]
+    #[Route('/{id}', name: 'edit', requirements: [
+        'id' => Requirement::DIGITS,
+    ], methods: ['GET', 'POST'])]
     public function edit(Category $category, Request $request, EntityManagerInterface $em)
     {
         $form = $this->createForm(CategoryType::class, $category);
@@ -53,11 +55,13 @@ class CategoryController extends AbstractController {
         }
         return $this->render('admin/category/edit.html.twig', [
             'category' => $category,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', requirements: ['id' => Requirement::DIGITS], methods: ['DELETE'])]
+    #[Route('/{id}', name: 'delete', requirements: [
+        'id' => Requirement::DIGITS,
+    ], methods: ['DELETE'])]
     public function remove(Category $category, EntityManagerInterface $em)
     {
         $em->remove($category);
@@ -65,5 +69,4 @@ class CategoryController extends AbstractController {
         $this->addFlash('success', 'La catégorie a bien été supprimée');
         return $this->redirectToRoute('admin.category.index');
     }
-
 }

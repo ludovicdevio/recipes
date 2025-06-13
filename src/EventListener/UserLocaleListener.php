@@ -9,13 +9,12 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Translation\LocaleSwitcher;
 
-final class UserLocaleListener
+final readonly class UserLocaleListener
 {
-
     public function __construct(
-        private readonly Security $security,
-        private readonly LocaleSwitcher $localeSwitcher
-    ){
+        private Security $security,
+        private LocaleSwitcher $localeSwitcher
+    ) {
 
     }
 

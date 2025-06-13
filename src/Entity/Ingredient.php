@@ -68,7 +68,7 @@ class Ingredient
 
     public function addQuantity(Quantity $quantity): static
     {
-        if (!$this->quantities->contains($quantity)) {
+        if (! $this->quantities->contains($quantity)) {
             $this->quantities->add($quantity);
             $quantity->setIngredient($this);
         }

@@ -10,16 +10,15 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[AsMessageHandler]
-final class RecipePDFMessageHandler
+final readonly class RecipePDFMessageHandler
 {
-
     public function __construct(
         #[Autowire('%kernel.project_dir%/public/pdfs')]
-        private readonly string $path,
+        private string $path,
         #[Autowire('%app.gotenberg_endpoint%')]
-        private readonly string $gotenbergEndpoint,
-        private readonly UrlGeneratorInterface $urlGenerator
-    ){
+        private string $gotenbergEndpoint,
+        private UrlGeneratorInterface $urlGenerator
+    ) {
 
     }
 
@@ -29,14 +28,16 @@ final class RecipePDFMessageHandler
             'curl',
             '--request',
             'POST',
-            sprintf("%s/forms/chromium/convert/url", $this->gotenbergEndpoint),
+            sprintf('%s/forms/chromium/convert/url', $this->gotenbergEndpoint),
             '--form',
-            sprintf("url=%s", $this->urlGenerator->generate('recipes.show', ['id' => $message->id], UrlGeneratorInterface::ABSOLUTE_URL)),
+            sprintf('url=%s', $this->urlGenerator->generate('recipes.show', [
+                'id' => $message->id,
+            ], UrlGeneratorInterface::ABSOLUTE_URL)),
             '-o',
-            sprintf("%s/%s.pdf", $this->path, $message->id)
+            sprintf('%s/%s.pdf', $this->path, $message->id),
         ]);
         $process->run();
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
     }

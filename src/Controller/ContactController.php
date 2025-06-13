@@ -26,7 +26,7 @@ class ContactController extends AbstractController
             try {
                 $dispatcher->dispatch(new ContactRequestEvent($data));
                 $this->addFlash('success', 'Votre email a bien été envoyé');
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 $this->addFlash('danger', 'Impossible d\'envoyer votre email');
             }
             /*

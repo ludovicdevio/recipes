@@ -14,10 +14,9 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
 
 class APIAuthenticator extends AbstractAuthenticator
 {
-
     public function supports(Request $request): ?bool
     {
-        return $request->headers->has('Authorization') && str_contains($request->headers->get('Authorization'), 'Bearer ');
+        return $request->headers->has('Authorization') && str_contains((string) $request->headers->get('Authorization'), 'Bearer ');
     }
 
     public function authenticate(Request $request): Passport
@@ -36,7 +35,7 @@ class APIAuthenticator extends AbstractAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         return new JsonResponse([
-            'message' => $exception->getMessage()
+            'message' => $exception->getMessage(),
         ], Response::HTTP_UNAUTHORIZED);
     }
 }

@@ -109,7 +109,7 @@ class Category
 
     public function addRecipe(Recipe $recipe): static
     {
-        if (!$this->recipes->contains($recipe)) {
+        if (! $this->recipes->contains($recipe)) {
             $this->recipes->add($recipe);
             $recipe->setCategory($this);
         }

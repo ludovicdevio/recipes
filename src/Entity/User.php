@@ -44,7 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recipe::class)]
     private Collection $recipes;
 
-    #[ORM\Column(length: 255, options: ['default' => 'fr'])]
+    #[ORM\Column(length: 255, options: [
+        'default' => 'fr',
+    ])]
     private string $locale = 'fr';
 
     public function __construct()
@@ -175,7 +177,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function addRecipe(Recipe $recipe): static
     {
-        if (!$this->recipes->contains($recipe)) {
+        if (! $this->recipes->contains($recipe)) {
             $this->recipes->add($recipe);
             $recipe->setUser($this);
         }

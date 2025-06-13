@@ -20,28 +20,28 @@ class ContactType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'empty_data' => '',
-                'label' => t('contactForm.name')
+                'label' => t('contactForm.name'),
             ])
             ->add('email', EmailType::class, [
                 'empty_data' => '',
-                'label' => t('contactForm.email')
+                'label' => t('contactForm.email'),
             ])
             ->add('message', TextareaType::class, [
                 'empty_data' => '',
-                'label' => t('contactForm.message')
+                'label' => t('contactForm.message'),
             ])
             ->add('save', SubmitType::class, [
-                'label' => t('contactForm.submit')
+                'label' => t('contactForm.submit'),
             ])
             ->add('service', ChoiceType::class, [
                 'label' => t('contactForm.service'),
-                'choices'  => [
+                'choices' => [
                     'Compta' => 'compta@demo.fr',
                     'Support' => 'support@demo.fr',
                     'Marketing' => 'marketing@demo.fr',
                 ],
-]);
-        ;
+            ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

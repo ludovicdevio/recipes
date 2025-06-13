@@ -2,12 +2,11 @@
 
 namespace App\Message;
 
-final class RecipePDFMessage
+final readonly class RecipePDFMessage
 {
-
-    public function __construct(public readonly int $id){
+    public function __construct(
+        public int $id
+    ) {
 
     }
-
-
 }

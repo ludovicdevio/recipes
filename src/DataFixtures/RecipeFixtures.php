@@ -3,10 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\User;
 use App\Entity\Ingredient;
 use App\Entity\Quantity;
 use App\Entity\Recipe;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -16,8 +16,9 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class RecipeFixtures extends Fixture implements DependentFixtureInterface
 {
-
-    public function __construct(private readonly SluggerInterface $slugger){
+    public function __construct(
+        private readonly SluggerInterface $slugger
+    ) {
 
     }
 
@@ -26,41 +27,41 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create('fr_FR');
         $faker->addProvider(new Restaurant($faker));
 
-        $ingredients = array_map(fn(string $name) => (new Ingredient())
+        $ingredients = array_map(fn (string $name) => (new Ingredient())
             ->setName($name)
             ->setSlug(strtolower($this->slugger->slug($name))), [
-            "Farine",
-            "Sucre",
-            "Oeufs",
-            "Beurre",
-            "Lait",
-            "Levure chimique",
-            "Sel",
-            "Chocolat noir",
-            "Pépites de chocolat",
-            "Fruits secs (amandes, noix, etc.)",
-            "Vanille",
-            "Cannelle",
-            "Fraise",
-            "Banane",
-            "Pomme",
-            "Carotte",
-            "Oignon",
-            "Ail",
-            "Échalote",
-            "Herbes fraîches (ciboulette, persil, etc.)"
-        ]);
+                'Farine',
+                'Sucre',
+                'Oeufs',
+                'Beurre',
+                'Lait',
+                'Levure chimique',
+                'Sel',
+                'Chocolat noir',
+                'Pépites de chocolat',
+                'Fruits secs (amandes, noix, etc.)',
+                'Vanille',
+                'Cannelle',
+                'Fraise',
+                'Banane',
+                'Pomme',
+                'Carotte',
+                'Oignon',
+                'Ail',
+                'Échalote',
+                'Herbes fraîches (ciboulette, persil, etc.)',
+            ]);
         $units = [
-            "g",
-            "kg",
-            "L",
-            "ml",
-            "cl",
-            "dL",
-            "c. à soupe",
-            "c. à café",
-            "pincée",
-            "verre"
+            'g',
+            'kg',
+            'L',
+            'ml',
+            'cl',
+            'dL',
+            'c. à soupe',
+            'c. à café',
+            'pincée',
+            'verre',
         ];
         foreach ($ingredients as $ingredient) {
             $manager->persist($ingredient);
@@ -79,7 +80,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
 
         for ($i = 1; $i <= 10; $i++) {
             $title = $faker->foodName();
-            $recipe= (new Recipe())
+            $recipe = (new Recipe())
                 ->setTitle($title)
                 ->setSlug(strtolower($this->slugger->slug($title)))
                 ->setUpdatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()))
@@ -89,11 +90,12 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
                 ->setUser($this->getReference('USER' . $faker->numberBetween(1, 10), User::class))
                 ->setDuration($faker->numberBetween(2, 60));
 
-            foreach($faker->randomElements($ingredients, $faker->numberBetween(2, 5)) as $ingredient) {
-                $recipe->addQuantity((new Quantity())
-                    ->setQuantity($faker->numberBetween(1, 250))
-                    ->setUnit($faker->randomElement($units))
-                    ->setIngredient($ingredient)
+            foreach ($faker->randomElements($ingredients, $faker->numberBetween(2, 5)) as $ingredient) {
+                $recipe->addQuantity(
+                    (new Quantity())
+                        ->setQuantity($faker->numberBetween(1, 250))
+                        ->setUnit($faker->randomElement($units))
+                        ->setIngredient($ingredient)
                 );
             }
 

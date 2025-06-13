@@ -17,7 +17,6 @@ return ECSConfig::configure()
         SetList::PSR_12,
         SetList::COMMON,
         SetList::CLEAN_CODE,
-        SetList::PHPUNIT,
     ])
     ->withSkip([
         ConcatSpaceFixer::class

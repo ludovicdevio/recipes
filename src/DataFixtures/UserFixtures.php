@@ -9,12 +9,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-
     public const ADMIN = 'ADMIN_USER';
 
     public function __construct(
         private readonly UserPasswordHasherInterface $hasher
-    ){
+    ) {
 
     }
 
@@ -41,7 +40,6 @@ class UserFixtures extends Fixture
             $this->addReference('USER' . $i, $user);
             $manager->persist($user);
         }
-
 
         // $product = new Product();
         // $manager->persist($product);

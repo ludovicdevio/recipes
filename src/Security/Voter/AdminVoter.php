@@ -8,7 +8,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class AdminVoter extends Voter
 {
-
     protected function supports(string $attribute, mixed $subject): bool
     {
         return true;
@@ -18,7 +17,7 @@ class AdminVoter extends Voter
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
-        if (!$user instanceof UserInterface) {
+        if (! $user instanceof UserInterface) {
             return false;
         }
 

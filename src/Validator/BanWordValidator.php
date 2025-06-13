@@ -9,13 +9,13 @@ class BanWordValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        /* @var BanWord $constraint */
+        /** @var BanWord $constraint */
 
-        if (null === $value || '' === $value) {
+        if ($value === null || $value === '') {
             return;
         }
 
-        $value = strtolower($value);
+        $value = strtolower((string) $value);
         foreach ($constraint->banWords as $banWord) {
             if (str_contains($value, $banWord)) {
                 $this->context->buildViolation($constraint->message)
