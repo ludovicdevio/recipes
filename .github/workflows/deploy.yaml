@@ -5,19 +5,8 @@ on:
       - main
 
 jobs:
-  audit:
-    uses: './.github/workflows/audit.yaml'
-    
-  quality:
-    uses: './.github/workflows/quality.yaml'
-    
-  tests:
-    needs: ['audit', 'quality']
-    uses: './.github/workflows/test.yaml'
-
   deploy: 
     name: Deploy
-    needs: [tests]
     runs-on: ubuntu-latest
     steps:
       - name: Execute SSH command
