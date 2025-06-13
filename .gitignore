@@ -28,3 +28,7 @@ bin/mailpit
 /public/adminer.php
 /public/images
 /public/pdfs
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
