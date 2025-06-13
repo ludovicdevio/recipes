@@ -122,6 +122,7 @@
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "jzonta/faker-restaurant": "^2.0",
+        "phpstan/phpstan-doctrine": "^2.0",
         "phpstan/phpstan-symfony": "^2.0",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "^2.0",
