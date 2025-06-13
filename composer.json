@@ -99,7 +99,16 @@
             "bin/console lint:container",
             "./vendor/bin/phpstan analyse --memory-limit=-1",
             "./vendor/bin/rector --dry-run"
+        ],
+        "app:tests": [
+            "bin/console doctrine:database:drop --force --if-exists --env=test",
+            "bin/console doctrine:database:create --env=test",
+            "bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration --env=test",
+            "bin/console doctrine:fixtures:load --no-interaction --env=test",
+            "bin/console cache:clear --env=test",
+            "bin/phpunit"
         ]
+
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -113,9 +122,6 @@
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "jzonta/faker-restaurant": "^2.0",
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-doctrine": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "^2.0",
         "symfony/browser-kit": "7.0.*",
