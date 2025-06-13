@@ -1,0 +1,25 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-doctrine/rules.neon
+
+parameters:
+    level: 6
+    paths:
+        - src/
+        - tests/
+    doctrine:
+        allowNullablePropertyForRequiredField: true
+    ignoreErrors:
+        - identifier: missingType.generics
+        - identifier: missingType.parameter
+        - identifier: missingType.iterableValue
+        - identifier: missingType.property 
+        - identifier: missingType.return
+        - identifier: doctrine.associationType
+        - identifier: method.notFound
+        - identifier: generics.notGeneric 
+        - identifier: arguments.count 
+        
+        
