@@ -76,10 +76,9 @@ class RecipesControllerTest extends WebTestCase
         // Tester que la route génère la bonne URL avec le paramètre locale
         $url = $this->client->getContainer()->get('router')->generate('recipes.show', [
             'id' => $recipe->getId(),
-            '_locale' => 'fr', // Ajout du paramètre locale obligatoire
         ]);
 
-        $this->assertEquals('/fr/recipes/' . $recipe->getId(), $url);
+        $this->assertEquals('/recipes/' . $recipe->getId(), $url);
 
         $this->client->request('GET', $url);
         $this->assertResponseIsSuccessful();
