@@ -1,0 +1,33 @@
+name: deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  audit:
+    uses: './.github/workflows/audit.yaml'
+    
+  quality:
+    uses: './.github/workflows/quality.yaml'
+    
+  tests:
+    needs: ['audit', 'quality']
+    uses: './.github/workflows/test.yaml'
+
+  deploy: 
+    name: Deploy
+    needs: [tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute SSH command
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/public_html/oaliv.com
+            git pull origin main --rebase
+            make deploy

@@ -39,7 +39,7 @@ jobs:
             --ignore-severity="low" \
             --ignore-severity="medium" \
             --format="json" \
-            --no-ansi \
+            --ansi \
             > /tmp/security-audit.json
 
       - name: upload security audit report
