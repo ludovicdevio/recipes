@@ -26,6 +26,7 @@
             <td>{{ recipe.category.name | default('') }}</td>
             <td>
                 <div class="d-flex gap-1">
+                    <a class="btn btn-primary btn-sm" href="{{ path('recipes.show', {id: recipe.id}) }}">Voir</a>
                     <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">Editer</a>
                     <form action="{{ path('admin.recipe.delete', {id: recipe.id}) }}" method="post">
                         <input type="hidden" name="_method" value="DELETE">

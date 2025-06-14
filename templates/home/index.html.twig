@@ -1,12 +1,173 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - Recipes App{% endblock %}
 
 {% block body %}
-    <h1>
-        {{ 'welcome' | trans({':name': 'John'}) }}
-    </h1>
-    <p>
-        {{ "home_recipe_count" | trans({count: 0}) }}
-    </p>
+    <!-- Section Hero -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-4 fw-bold mb-4">
+                        <i class="fas fa-utensils me-3"></i>
+                        Bienvenue sur Recipes App
+                    </h1>
+                    <p class="lead mb-4">
+                        Découvrez, créez et partagez vos recettes préférées avec notre communauté de passionnés de cuisine
+                    </p>
+                    <div class="d-grid d-md-flex justify-content-md-center gap-2">
+                        <a href="{{path('admin.recipe.index')}}" class="btn btn-light btn-lg px-4">
+                            <i class="fas fa-search me-2"></i>Explorer les recettes
+                        </a>
+                        <a href="{{path('admin.recipe.create')}}" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-plus me-2"></i>Ajouter une recette
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Statistiques -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                            <h3 class="card-title">1,250+</h3>
+                            <p class="card-text text-muted">Recettes disponibles</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-users fa-3x text-success mb-3"></i>
+                            <h3 class="card-title">500+</h3>
+                            <p class="card-text text-muted">Chefs amateurs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-star fa-3x text-warning mb-3"></i>
+                            <h3 class="card-title">4.8/5</h3>
+                            <p class="card-text text-muted">Note moyenne</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Recettes populaires -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">Recettes populaires</h2>
+                    <p class="lead text-muted">Découvrez les recettes les plus appréciées par notre communauté</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card recipe-card border-0 shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200/FF6B6B/FFFFFF?text=Pasta" class="card-img-top" alt="Pasta">
+                        <div class="card-body">
+                            <h5 class="card-title">Pâtes à la carbonara</h5>
+                            <p class="card-text text-muted">Une recette traditionnelle italienne simple et délicieuse.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">
+                                    <i class="fas fa-clock me-1"></i>25 min
+                                </span>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card recipe-card border-0 shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200/4ECDC4/FFFFFF?text=Salad" class="card-img-top" alt="Salade">
+                        <div class="card-body">
+                            <h5 class="card-title">Salade César</h5>
+                            <p class="card-text text-muted">Une salade fraîche et croquante avec une sauce onctueuse.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-success">
+                                    <i class="fas fa-clock me-1"></i>15 min
+                                </span>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card recipe-card border-0 shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200/45B7D1/FFFFFF?text=Dessert" class="card-img-top" alt="Dessert">
+                        <div class="card-body">
+                            <h5 class="card-title">Tiramisu</h5>
+                            <p class="card-text text-muted">Le dessert italien par excellence, fondant et savoureux.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-info">
+                                    <i class="fas fa-clock me-1"></i>30 min
+                                </span>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{path('admin.recipe.index')}}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-arrow-right me-2"></i>Voir toutes les recettes
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="display-6 fw-bold mb-4">Prêt à commencer ?</h2>
+                    <p class="lead mb-4">
+                        Rejoignez notre communauté et commencez à partager vos créations culinaires dès aujourd'hui
+                    </p>
+                    {% if not app.user %}
+                        <a href="{{ path('app_register') }}" class="btn btn-light btn-lg me-3">
+                            <i class="fas fa-user-plus me-2"></i>S'inscrire gratuitement
+                        </a>
+                        <a href="{{ path('app_login') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Se connecter
+                        </a>
+                    {% else %}
+                        <a href="{{path('admin.recipe.create')}}" class="btn btn-light btn-lg">
+                            <i class="fas fa-plus me-2"></i>Créer ma première recette
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

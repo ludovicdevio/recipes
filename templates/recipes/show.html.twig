@@ -1,13 +1,66 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ recipe.title }} - Recipes App{% endblock %}
+
 {% block body %}
-    <h1>{{ recipe.title }}</h1>
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('home') }}">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="#">Recettes</a></li>
+                <li class="breadcrumb-item active">{{ recipe.title }}</li>
+            </ol>
+        </nav>
 
-    <p class="text-center">
-        <img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}" alt="" style="max-height: 300px" class="img-thumbnail">
-    </p>
-
-    <p>
-        {{ recipe.content | nl2br }}
-    </p>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="card-title h2 mb-0">
+                            <i class="fas fa-utensils me-2"></i>{{ recipe.title }}
+                        </h1>
+                    </div>
+                    
+                    {% if recipe.thumbnail %}
+                        <div class="text-center p-3">
+                            <img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}" 
+                                 alt="{{ recipe.title }}" 
+                                 class="img-fluid rounded shadow"
+                                 style="max-height: 400px">
+                        </div>
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        {% if recipe.duration %}
+                            <div class="mb-3">
+                                <span class="badge bg-info fs-6">
+                                    <i class="fas fa-clock me-1"></i>{{ recipe.duration }} minutes
+                                </span>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="recipe-content">
+                            {{ recipe.content | nl2br }}
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fas fa-user me-1"></i>Par {{ recipe.user.username }}
+                            </small>
+                            <div>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-heart me-1"></i>Favoris
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-share me-1"></i>Partager
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

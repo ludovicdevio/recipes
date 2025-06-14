@@ -14,6 +14,7 @@ class RecipesController extends AbstractController
     ])]
     public function show(Recipe $recipe)
     {
+
         return $this->render('recipes/show.html.twig', [
             'recipe' => $recipe,
         ]);
