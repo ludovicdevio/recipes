@@ -94,6 +94,7 @@
         ],
         "app:code-quality": [
             "./vendor/bin/ecs check",
+            "./vendor/bin/ecs --fix",
             "bin/console lint:yaml config --parse-tags",
             "bin/console lint:twig templates",
             "bin/console lint:container",
