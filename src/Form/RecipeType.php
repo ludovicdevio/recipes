@@ -59,6 +59,8 @@ class RecipeType extends AbstractType
             ])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->listenerFactory->autoSlug('title'))
             ->addEventListener(FormEvents::POST_SUBMIT, $this->listenerFactory->timestamps())
+            ->addEventListener(FormEvents::POST_SUBMIT, $this->listenerFactory->setUser())
+
         ;
     }
 
